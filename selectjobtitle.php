@@ -133,6 +133,7 @@ function selectjobtitle_civicrm_buildForm($formName, &$form) {
 
     $form->add('select2', 'job_title', ts('Job Title'), $opts, FALSE, [
       'class'    => 'crm-select2',
+      'placeholder' => ts('- select -'),
       'multiple' => FALSE,
     ]);
   }
