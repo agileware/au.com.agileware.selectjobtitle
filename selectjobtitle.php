@@ -52,7 +52,7 @@ function selectjobtitle_setup_optiongroups() {
   $optionValues = OptionValue::save(FALSE)->addRecord([
     'option_group_id.name' => 'job_title',
     'label'                => 'Sanitation Officer',
-    'value'                => 'Sanitation Officer',
+    'value'                => '1',
     'name'                 => 'Sanitation Officer',
   ])->setMatch(['value'])->execute();
 }
@@ -71,7 +71,7 @@ function selectjobtitle_civicrm_buildForm($formName, &$form) {
 
     foreach ($options['values'] as $opt) {
       $opts[] = [
-        'id'   => $opt['name'],
+        'id'   => $opt['label'], // Label is the value that is saved in the Job Title text field, because Label is the editable field in the Option Group
         'text' => $opt['label'],
       ];
     }
