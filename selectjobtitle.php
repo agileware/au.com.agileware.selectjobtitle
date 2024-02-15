@@ -87,13 +87,7 @@ function selectjobtitle_civicrm_entityTypes(&$entityTypes) {
   _selectjobtitle_civix_civicrm_entityTypes($entityTypes);
 }
 
-/**
- * Create the required Activity Category and Activity Category, CiviMobile
- * option
- */
-
 function selectjobtitle_setup_optiongroups() {
-  // Check that the Activity Category Option exists
   $optionGroups = OptionGroup::save(FALSE)->addRecord([
     'name'        => 'job_title',
     'title'       => 'Job Title',
@@ -114,8 +108,6 @@ function selectjobtitle_setup_optiongroups() {
  * Implements hook_civicrm_buildForm().
  */
 function selectjobtitle_civicrm_buildForm($formName, &$form) {
-
-  // Display category option for activity types and activity statuses.
   if ($formName == 'CRM_Contact_Form_Contact' || $formName == 'CRM_Contact_Form_Inline_ContactInfo' || $formName == 'CRM_Contact_Form_Search_Advanced') {
     $options = civicrm_api3('optionValue', 'get', [
       'option_group_id' => 'job_title',
