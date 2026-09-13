@@ -1,16 +1,56 @@
-# Change Job Title to Select List
+# Change Job Title to Select List (au.com.agileware.selectjobtitle)
 
-Changes the Contact, Job Title field to a select list of options, removing the free-text field.
-This will restrict which options users can select from and does not change stored values already in this field.
+This is a [CiviCRM](https://civicrm.org) extension that changes the Contact **Job Title** field
+from a free-text field into a select list of pre-defined options. This solves the problem of
+inconsistent, free-typed Job Title values (typos, variant spellings, near-duplicates) by
+restricting Contact staff to choosing from a controlled list of options that your organisation
+manages.
 
-_Note_: When the user edits a contact, any saved values that are _not_ in the Job Title option group will _not_ be shown in the select list.
+Existing Job Title values already stored on Contacts are **not** changed or removed by this
+extension. The extension only replaces the input widget used to edit the field.
 
-## Installation and configuration
+The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
-1. Install and enable this CiviCRM extension.
-2. When this Extension is installed a new option group, Job Title is created.
-3. Go to the `Administer CiviCRM > Option Groups` page.
-4. Add the Job Title options that you want used in CiviCRM.
+## Usage
+
+Once installed, the **Job Title** field is rendered as a select2 dropdown (populated from the
+`job_title` option group, sorted by weight, active options only) on:
+
+* The Contact edit form (`CRM_Contact_Form_Contact`)
+* The Contact Summary inline edit panel (`CRM_Contact_Form_Inline_ContactInfo`)
+* Advanced Search (`CRM_Contact_Form_Search_Advanced`)
+
+The value saved to the Contact's Job Title field is the option's **label** (not its internal
+name/value), since the label is the field administrators edit when managing the option list.
+
+_Note_: If a Contact's existing Job Title value is not present in the Job Title option group
+(for example, historical free-text data), it will not appear as a selected/selectable option
+in the dropdown when editing that Contact.
+
+## Special configuration requirements
+
+No API keys, credentials, or dependent extensions are required.
+
+On install/enable, the extension automatically creates an option group named `job_title`
+(title "Job Title") if it does not already exist, seeded with a single example option value,
+"Sanitation Officer". You should review and replace this with the Job Title options relevant
+to your organisation.
+
+To manage the list of Job Titles available for selection:
+
+1. Go to `Administer > CiviCRM Data > Option Groups` (Administer CiviCRM > Option Groups).
+2. Open the **Job Title** option group.
+3. Add, edit, remove, re-order (by weight), or activate/deactivate the Job Title options you
+   want available in CiviCRM. Only active options are shown in the select list.
+
+## Requirements
+
+* CiviCRM 5.51 or later
+
+## Installation (Web UI)
+
+Learn more about installing CiviCRM extensions in the [CiviCRM Sysadmin
+Guide](https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/).
 
 # About the Authors
 
